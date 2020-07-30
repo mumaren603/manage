@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .pg_content .content .content_h{
+            position: fixed;
+            top: 80px;
+            left: 240px;
+            right: 40px;
+            height: 50px;
+            line-height: 50px;
+            text-align: left;
+            background-color: cadetblue;
+        }
+
+        .pg_content .content .content_m{
+            position: fixed;
+            top: 160px;
+            left:240px;
+            right:40px;
+            {#height: 480px;#}
+            line-height: 50px;
+            text-align: left;
+            background-color: cadetblue;
+        }
+
+        .host_text{
+            width: 30%;
+        }
+        .query{
+            width: 40%;
+        }
+        .btn{
+            width: 30%;
+        }
+
+        .table_header{
+            position: fixed;
+            {#top: 148px;#}
+            left:240px;
+            right:40px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: cadetblue;
+        }
+
+        .table_middle{
+            position: fixed;
+            top: 200px;
+            left:240px;
+            right:40px;
+            height: 400px;
+            line-height: 50px;
+            text-align: center;
+            background-color: cadetblue;
+            overflow: auto;
+        }
+
+        .table_footer{
+            position: fixed;
+            bottom: 80px;
+            left:240px;
+            right:40px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: cadetblue;
+        }
+        table{
+            width: 100%;
+            border: 1px solid brown;
+        }
+        table td{
+            width: 15%;
+        }
+
+        .hide{
+            display: none;
+        }
+        .shadow{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .edit_div,.add_div{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            height: 400px;
+            width: 600px;
+            background: white;
+            border: 1px solid black;
+            margin-top: -200px;
+            margin-left: -300px;
+            z-index: 2;
+        }
+
+        .edit_div_body{
+            position:relative;
+            padding: 15px;
+        }
+        .edit_div_footer{
+            padding: 15px;
+            text-align: right;
+        }
+
+        .edit_tr{
+            height: 40px;
+            line-height: 40px;
+            text-align: left;
+        }
+        .edit_td{
+            width:280px;
+        }
+
+        .host_{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="pg_header">
+    <div class="header_left">XXX管理页面</div>
+    <div class="header_right">用户头像，登录用户名</div>
+</div>
+
+<div class="pg_content">
+     <div class="menu">
+         <div class="menu_"><a href="/home/index">主页</a></div>
+         <div class="menu_"><a href="/home/host-manage">主机管理</a></div>
+         <div class="menu_"><a href="/home/resource-manage">资源管理</a></div>
+         <div class="menu_"><a href="#">xxx管理</a></div>
+     </div>
+     <div class="content">
+        <div class="content_h">主机管理</div>
+        <div class="content_m">
+
+            <div class="table_header">
+                <div class="host_text left">主机列表</div>
+                <div class="query left">
+                    <input type="text" placeholder="请输入要查询的条件">
+                    <input type="submit" value="查询">
+                </div>
+                <div class="btn left">
+                    <input  id="add_btn" type="button" value="+添加主机">
+                    <input  type="button" value="导出主机">
+                </div>
+            </div>
+
+            <div class="shadow hide"></div>
+            <!--添加功能-->
+            <div class="add_div hide">
+                <div class="edit_div_body">
+                    <form id="add_form">
+                        <div class="edit_tr">
+                        <div class="edit_td">
+                            <label class="left"><i style="color: red">*</i>主机名：</label>
+                            <div class="left">
+                                <input type="text" name="host_name">
+                            </div>
+                        </div>
+                        <div class="edit_td">
+                            <label class="left"><i style="color: red">*</i>IP：</label>
+                            <div class="left">
+                                <input type="text" name="host_ip">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">MAC地址：</label>
+                                <div class="left">
+                                    <input type="text" name="host_mac">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">操作系统：</label>
+                                <div class="left">
+                                    <input type="text" name="host_os">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">价格：</label>
+                                <div class="left">
+                                    <input type="text" name="host_price">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">CPU：</label>
+                                <div class="left">
+                                    <input type="text" name="host_cpu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">内存：</label>
+                                <div class="left">
+                                    <input type="text" name="host_memory">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">磁盘：</label>
+                                <div class="left">
+                                    <input type="text" name="host_disk">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">电源：</label>
+                                <div class="left">
+                                    <input type="text" name="host_power">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left"><i style="color: red">*</i>部门：</label>
+                                <select name="host_dept" >
+                                    {% for row in b_info  %}
+                                    <option value="{{ row.id }}">{{ row.deptname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="edit_div_footer">
+                    <span id="add_error_msg" style="color: red" ></span>
+                    <input id="add_save_btn" type="submit" value="保存">
+                    <input id="add_cal_btn" type="button" value="取消">
+                </div>
+
+            </div>
+            <!--编辑功能-->
+            <div class="edit_div hide">
+                <div class="edit_div_body">
+                    <form id="edit_form">
+                        <div class="edit_tr">
+                        <div class="edit_td">
+                            <label class="left"><i style="color: red">*</i>主机名：</label>
+                            <div class="left">
+                                <input style="display: none" type="text" name="host_id">
+                                <input type="text" name="host_name">
+                            </div>
+                        </div>
+                        <div class="edit_td">
+                            <label class="left"><i style="color: red">*</i>IP：</label>
+                            <div class="left">
+                                <input type="text" name="host_ip">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">MAC地址：</label>
+                                <div class="left">
+                                    <input type="text" name="host_mac">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">操作系统：</label>
+                                <div class="left">
+                                    <input type="text" name="host_os">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">价格：</label>
+                                <div class="left">
+                                    <input type="text" name="host_price">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">CPU：</label>
+                                <div class="left">
+                                    <input type="text" name="host_cpu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">内存：</label>
+                                <div class="left">
+                                    <input type="text" name="host_memory">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left">磁盘：</label>
+                                <div class="left">
+                                    <input type="text" name="host_disk">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div>
+                                <label class="left">电源：</label>
+                                <div class="left">
+                                    <input type="text" name="host_power">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="left"><i style="color: red">*</i>部门：</label>
+                                <div class="left">
+                                    <select name="host_dept">
+                                        {% for row in b_info %}
+                                        <option value="{{ row.id }}">{{ row.deptname }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="edit_div_footer">
+                    <span id="edit_error_msg" style="color: red" ></span>
+                    <input id="edit_save_btn" type="submit" value="保存">
+                    <input id="edit_cal_btn" type="button" value="取消">
+                </div>
+
+            </div>
+
+
+            <div class="table_middle">
+                <table>
+                 <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>主机名</th>
+                        <th>IP</th>
+                        <th>mac</th>
+                        <th>部门</th>
+                        <th>操作</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                 {% for row in host_info %}
+                    <tr hid="{{ row.hid }}" bid="{{ row.dept_id }}">
+                        <td>{{ forloop.counter }}</td>
+                        <td name="host_name">{{ row.hostname }}</td>
+                        <td name="host_ip">{{ row.ip }}</td>
+                        <td name="host_mac">{{ row.mac }}</td>
+                        <td class="host_" name="host_os">{{ row.os }}</td>
+                        <td class="host_" name="host_price">{{ row.price }}</td>
+                        <td class="host_" name="host_cpu">{{ row.cpu }}</td>
+                        <td class="host_" name="host_memory">{{ row.memory }}</td>
+                        <td class="host_" name="host_disk">{{ row.disk }}</td>
+                        <td class="host_" name="host_power">{{ row.power }}</td>
+                        <td name="host_deptname">{{ row.dept.deptname }}</td>
+                        <td>
+                            <a href="home/detail-{{ row.hid }}">
+                                <input type="button" value="详情">
+                            </a>
+                            <input class="edit_btn" type="button" value="编辑">
+                            <a href="/home/del-{{ row.hid }}">
+                                <input id="del_btn" type="button" value="删除">
+                            </a>
+                        </td>
+                    </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+            </div >
+
+            <div class="table_footer">分页功能（未实现）</div>
+        </div>
+     </div>
+</div>
+<div class="pg_footer"></div>
+<script src="/static/jquery.min.js"></script>
+<script>
+    $(function(){
+        //添加操作
+        $('#add_btn').click(function () {
+            $('.shadow,.add_div').removeClass('hide')
+        })
+
+        //添加界面取消按钮
+        $('#add_cal_btn').click(function () {
+            $('.shadow,.add_div').addClass('hide')
+        })
+
+        //编辑界面取消按钮
+        $('#edit_cal_btn').click(function () {
+            $('.shadow,.edit_div').addClass('hide')
+        })
+
+        //添加保存功能
+        $('#add_save_btn').click(function () {
+            $.ajax({
+                url:'/host_add',
+                method:'POST',
+                data:$('#add_form').serialize(),
+                dataType:'JSON',
+                success:function(obj){
+                    if(obj.code == 0){
+                        location.reload()
+                    }else{
+                        $('#add_error_msg').text(obj.err_msg)
+                    }
+
+                }
+            })
+        })
+
+        //编辑
+        $('.edit_btn').click(function () {
+            $('.shadow,.edit_div').removeClass('hide')
+
+            //当前主机id获取
+            var host_id = $(this).parent().parent().attr('hid')
+            //当前部门id获取
+            var host_deptname = $(this).parent().parent().attr('bid')
+
+            var host_name = $(this).parent().parent().find('td[name="host_name"]'). text()
+            var host_ip = $(this).parent().parent().find('td[name="host_ip"]'). text()
+            var host_mac = $(this).parent().parent().find('td[name="host_mac"]'). text()
+            var host_os = $(this).parent().parent().find('td[name="host_os"]'). text()
+            var host_price = $(this).parent().parent().find('td[name="host_price"]'). text()
+            var host_cpu = $(this).parent().parent().find('td[name="host_cpu"]'). text()
+            var host_memory = $(this).parent().parent().find('td[name="host_memory"]'). text()
+            var host_power = $(this).parent().parent().find('td[name="host_power"]'). text()
+            var host_disk = $(this).parent().parent().find('td[name="host_disk"]'). text()
+
+
+            //编辑页面id值回填 用于发给后端数据更新是作为查询条件
+            $('#edit_form').find('input[name="host_id"]').val(host_id)
+            //
+            $('#edit_form').find('select').val(host_deptname)
+
+            $('#edit_form').find('input[name="host_name"]').val(host_name)
+            $('#edit_form').find('input[name="host_ip"]').val(host_ip)
+            $('#edit_form').find('input[name="host_mac"]').val(host_mac)
+            $('#edit_form').find('input[name="host_os"]').val(host_os)
+            $('#edit_form').find('input[name="host_price"]').val(host_price)
+            $('#edit_form').find('input[name="host_cpu"]').val(host_cpu)
+            $('#edit_form').find('input[name="host_memory"]').val(host_memory)
+            $('#edit_form').find('input[name="host_power"]').val(host_power)
+            $('#edit_form').find('input[name="host_disk"]').val(host_disk)
+
+            $('#edit_save_btn').click(function(){
+                $.ajax({
+                    url:'/host_edit',
+                    type:'POST',
+                    data:$('#edit_form').serialize(),
+                    dataType: 'JSON',
+                    success:function (obj) {
+                        if(obj.code==0){
+                            console.log('haha')
+                            location.reload()
+                        }else{
+                            console.log(obj.err_msg)
+                            $('#edit_error_msg').text(obj.err_msg)
+                        }
+                    }
+                })
+            })
+
+        })
+
+    })
+</script>
+</body>
+</html>

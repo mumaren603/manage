@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+
+
+        .pg_header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: aquamarine;
+            color: brown;
+        }
+        .header_left{
+            float: left;
+            width: 80%;
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+        }
+        .header_right{
+            float: left;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .pg_content .menu{
+            position: fixed;
+            top: 50px;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            background-color: #dddddd;
+        }
+
+        .pg_content .content{
+            position: fixed;
+            top: 50px;
+            right: 0;
+            bottom: 0;
+            {#left: 200px;#}
+            background-color: #dddddd;
+            overflow: auto;
+        }
+        .menu_{
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid grey;
+        }
+        .pg_content .content .content_h{
+            position: fixed;
+            top: 80px;
+            left: 240px;
+            right: 40px;
+            height: 50px;
+            line-height: 50px;
+            text-align: left;
+            background-color: cadetblue;
+        }
+
+        .pg_content .content .content_m{
+            position: fixed;
+            top: 160px;
+            left:240px;
+            right:40px;
+            height: 480px;
+            line-height: 50px;
+            text-align: left;
+            background-color: cadetblue;
+            overflow: scroll;
+        }
+
+        table{
+            width: 100%;
+            border: 1px solid brown;
+        }
+        table td{
+            width: 15%;
+        }
+    </style>
+</head>
+<body>
+<div class="pg_header">
+    <div class="header_left">XXX管理页面</div>
+    <div class="header_right">用户头像，登录用户名</div>
+</div>
+
+<div class="pg_content">
+     <div class="menu">
+         <div class="menu_"><a href="/home/index">主页</a></div>
+         <div class="menu_"><a href="/home/host-manage">主机管理</a></div>
+         <div class="menu_"><a href="/home/resource-manage">资源管理</a></div>
+         <div class="menu_"><a href="#">xxx管理</a></div>
+     </div>
+     <div class="content">
+        <div class="content_h">详细信息</div>
+        <div class="content_m">
+            <table>
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>属性值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>主机名</td>
+                        <td>{{ host_detail.hostname }}</td>
+                    </tr>
+                    <tr>
+                        <td>IP</td>
+                        <td>{{ host_detail.ip }}</td>
+                    </tr>
+                    <tr>
+                        <td>MAC地址</td>
+                        <td>{{ host_detail.mac }}</td>
+                    </tr>
+                    <tr>
+                        <td>操作系统</td>
+                        <td>{{ host_detail.os}}</td>
+                    </tr>
+                    <tr>
+                        <td>价格</td>
+                        <td>{{ host_detail.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>{{ host_detail.cpu }}</td>
+                    </tr>
+                    <tr>
+                        <td>内存</td>
+                        <td>{{ host_detail.memory }}</td>
+                    </tr>
+                    <tr>
+                        <td>磁盘</td>
+                        <td>{{ host_detail.disk }}</td>
+                    </tr>
+                    <tr>
+                        <td>电源</td>
+                        <td>{{ host_detail.power }}</td>
+                    </tr>
+                    <tr>
+                        <td>所属部门</td>
+                        <td>{{ host_detail.dept.deptname }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+     </div>
+</div>
+<div class="pg_footer"></div>
+<script src="/static/jquery.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

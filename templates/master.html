@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <!--子页面单独css-->
+    {% block link %} {% endblock %}
+</head>
+<body>
+<div class="pg_header">
+    <div class="logo left">
+        <a href="#">
+            <img src="/static/photos/logo.png" alt="logo">
+        </a>
+    </div>
+    <div class="web_name left">
+        中天后台管理系统
+    </div>
+    <div class="person_info right">
+        <img src="/static/photos/person.jpg" alt="头像">
+        <div class="info">
+            <a>我的信息</a>
+            <a>注销</a>
+            <a>修改密码</a>
+            <a>修改头像</a>
+        </div>
+    </div>
+</div>
+
+<div class="pg_content">
+     <div class="menu">
+         <div class="menu_s"><a href="/home/index">主页</a></div>
+         <div class="menu_s"><a href="/home/host">主机管理</a></div>
+         <div class="menu_s"><a href="/home/ipPool">IP池管理</a></div>
+         <div class="menu_s"><a href="/home/sjbTool">数据泵操作</a></div>
+     </div>
+
+     <div class="content">
+        <!--子页面单独内容-->
+         {% block content %} {% endblock %}
+     </div>
+</div>
+<div class="pg_footer"></div>
+<script src="/static/jquery.min.js"></script>
+{% block js %}{% endblock %}
+    <script>
+        $(".header").click(function(){
+            $(this).next().removeClass('hide').parent().siblings().find('.content').addClass('hide');;
+        });
+    </script>
+</body>
+</html>

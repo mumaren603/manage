@@ -1,0 +1,650 @@
+{% extends "master.html" %}
+{% block link %}
+    <link rel="stylesheet" href="/static/css/host.css">
+{% endblock %}
+
+{% block content %}
+    <div class="content_m">
+        <div class="shadow hide"></div>
+        <!--添加功能-->
+        <div class="add_div hide">
+                <div class="add_div_body">
+                    <form id="add_form">
+                        <div class="edit_tr">基本信息：</div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>主机名：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_name">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    系统版本：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_systemVersion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>用户名：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_username">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>密码：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    主板序列号：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_mainboardNo">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    主板型号：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_mainboardmodel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    CPU逻辑核数：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_CPUlogiccores">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>CPU物理核数：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_CPUphysicalcores">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    厂商：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_manufacturer">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>部门：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <select name="host_dept">
+                                        {% for row in b_info %}
+                                        <option value="{{ row.id }}">{{ row.deptname }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edit_tr">网卡信息：</div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>网卡名称(内)：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Intranetname">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    网卡MAC(内)：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Intranetmac">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>内网IP：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetIp">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>内网子网：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetNetMask">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    内网网关：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetGateWay">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    内网DNS：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetDNS">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>网卡名称(外)：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Extranetmac">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    网卡MAC(外)：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Extranetmac">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网IP：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetIp">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网子网：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetNetMask">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网网关：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetGateWay">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网DNS：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetDNS">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edit_tr">硬件信息：</div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    价格：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_price">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    CPU：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_cpu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    内存：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_memory">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    磁盘：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_disk">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    电源：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_power">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    操作系统：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_os">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="add_div_footer">
+                    <span id="add_error_msg" style="color: red" ></span>
+                    <input id="add_save_btn"  style="background-color: blue"  type="submit" value="保存">
+                    <input id="add_cal_btn" type="button" value="取消">
+                </div>
+
+            </div>
+        <!--编辑功能-->
+        <div class="edit_div hide">
+                <div class="edit_div_body">
+                    <form id="edit_form">
+                        <div class="edit_tr">基本信息：</div>
+                        <div class="edit_tr">
+                            <div style="display: none;"><input type="text" name="host_id"></div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>主机名：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_name">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    系统版本：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_systemVersion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>用户名：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_username">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>密码：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    主板序列号：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_mainboardNo">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    主板型号：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_mainboardmodel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    CPU逻辑核数：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_CPUlogiccores">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>CPU物理核数：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_CPUphysicalcores">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    厂商：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_manufacturer">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>部门：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <select name="host_dept">
+                                        {% for row in b_info %}
+                                        <option value="{{ row.id }}">{{ row.deptname }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edit_tr">网卡信息：</div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>网卡名称(内)：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Intranetname">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    网卡MAC(内)：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Intranetmac">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>内网IP：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetIp">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>内网子网：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetNetMask">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    内网网关：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetGateWay">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    内网DNS：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_IntranetDNS">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>网卡名称(外)：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Extranetmac">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    网卡MAC(外)：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_Extranetmac">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网IP：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetIp">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网子网：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetNetMask">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网网关：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetGateWay">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    <label><i style="color: red">*</i>外网DNS：</label>
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_ExtranetDNS">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edit_tr">硬件信息：</div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    价格：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_price">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    CPU：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_cpu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    内存：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_memory">
+                                </div>
+                            </div>
+                            <div class="edit_td">
+                                <div class="edit_h">
+                                    磁盘：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_disk">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit_tr">
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    电源：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_power">
+                                </div>
+                            </div>
+                            <div class="edit_td" >
+                                <div class="edit_h">
+                                    操作系统：
+                                </div>
+                                <div class="edit_c">
+                                    <input type="text" name="host_os">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="edit_div_footer">
+                    <span id="edit_error_msg" style="color: red" ></span>
+                    <input style="background-color: blue" id="edit_save_btn" type="submit" value="保存">
+                    <input id="edit_cal_btn" type="button" value="取消">
+                </div>
+
+            </div>
+
+        <div class="content_t">主机管理</div>
+
+        <div class="content_b">
+            <div class="content_h">
+                <div class="content_h_t left">主机列表</div>
+                <div class="content_h_q left">
+                    <input type="text" placeholder="请输入要查询的条件">
+                    <input type="submit" value="查询">
+                </div>
+                <div class="content_h_a left">
+                    <input  id="add_btn" type="button" value="+添加主机">
+                    <input  type="button" value="导出主机">
+                </div>
+        </div>
+            <div class="content_m">
+                <table style="width: 100%;">
+                     <thead>
+                        <tr>
+                            <th style="width: 10%;">序号</th>
+                            <th style="width: 15%;">主机名</th>
+                            <th style="width: 15%;">IP地址</th>
+                            <th style="width: 15%;">用户名</th>
+                            <th style="width: 15%;">密码</th>
+                            <th style="width: 15%;">部门</th>
+                            <th style="width: 15%;">操作</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     {% for row in host_data %}
+                            <tr hid="{{ row.hid }}" bid="{{ row.dept_id }}">
+                                <td>{{ forloop.counter|add:start_id }}</td>
+                                <td name="host_name">{{ row.hostname }}</td>
+                                <td name="host_IntranetIp">{{ row.IntranetIp }}</td>
+                                <td name="host_username">{{ row.username }}</td>
+                                <td name="host_password">{{ row.password }}</td>
+                                <td name="host_deptname">{{ row.dept.deptname }}</td>
+
+                                <td class="host_" name="host_Intranetname">{{ row.Intranetname }}</td>
+                                <td class="host_" name="host_Intranetmac">{{ row.Intranetmac }}</td>
+                                <td class="host_" name="host_IntranetNetMask">{{ row.IntranetNetMask }}</td>
+                                <td class="host_" name="host_IntranetGateWay">{{ row.IntranetGateWay }}</td>
+                                <td class="host_" name="host_IntranetDNS">{{ row.IntranetDNS }}</td>
+                                <td class="host_" name="host_Extranetname">{{ row.Extranetname }}</td>
+                                <td class="host_" name="host_Extranetmac">{{ row.Extranetmac }}</td>
+                                <td class="host_" name="host_ExtranetIp">{{ row.ExtranetIp }}</td>
+                                <td class="host_" name="host_ExtranetNetMask">{{ row.ExtranetNetMask }}</td>
+                                <td class="host_" name="host_ExtranetGateWay">{{ row.ExtranetGateWay }}</td>
+                                <td class="host_" name="host_ExtranetDNS">{{ row.ExtranetDNS }}</td>
+                                <td class="host_" name="host_systemVersion">{{ row.systemVersion }}</td>
+                                <td class="host_" name="host_mainboardNo">{{ row.mainboardNo }}</td>
+                                <td class="host_" name="host_mainboardmodel">{{ row.mainboardmodel }}</td>
+                                <td class="host_" name="host_manufacturer">{{ row.manufacturer }}</td>
+                                <td class="host_" name="host_CPUlogiccores">{{ row.CPUlogiccores }}</td>
+                                <td class="host_" name="host_CPUphysicalcores">{{ row.CPUphysicalcores }}</td>
+                                <td class="host_" name="host_os">{{ row.os }}</td>
+                                <td class="host_" name="host_price">{{ row.price }}</td>
+                                <td class="host_" name="host_cpu">{{ row.cpu }}</td>
+                                <td class="host_" name="host_memory">{{ row.memory }}</td>
+                                <td class="host_" name="host_disk">{{ row.disk }}</td>
+                                <td class="host_" name="host_power">{{ row.power }}</td>
+                                <td>
+                                    <a href="home/detail-{{ row.hid }}">
+                                        <input type="button" value="详情">
+                                    </a>
+                                    <input class="edit_btn" type="button" value="编辑">
+                                    <a href="/home/del-{{ row.hid }}">
+                                        <input id="del_btn" type="button" value="删除">
+                                    </a>
+                                </td>
+                            </tr>
+                     {% endfor %}
+                     </tbody>
+                 </table>
+                </div >
+            <div class="content_f">
+                <div style="float:right;">
+                    {{ page_str }}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/host_manage.js"></script>
+{% endblock %}
+
+

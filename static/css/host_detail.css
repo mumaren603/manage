@@ -1,0 +1,55 @@
+        .hide{
+            display: none;
+        }
+        .content_h{
+            position: fixed;
+            top: 60px;
+            left: 220px;
+            right: 20px;
+            height: 50px;
+            line-height: 50px;
+            text-align: left;
+            background-color: cadetblue;
+        }
+
+        .content_m{
+            position: fixed;
+            top:130px;
+            left:220px;
+            right:20px;
+            bottom:20px;
+            background-color: cadetblue;
+            overflow: scroll;
+        }
+
+        .content_m .menu{
+            position: relative;
+            top: 0;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background-color: blueviolet;
+            width: 100%;
+        }
+
+        .content_m .menu .menu-item{
+            float: left;
+            width: 20%;
+        }
+
+        .content_m .detail_content{
+            position: relative;
+            height: 80%;
+        }
+
+        th,td{
+            width: 200px;
+            height: 40px;
+        }
+        tr{
+            text-align: left;
+        }
+
+        .active{
+            background-color: aqua;
+        }

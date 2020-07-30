@@ -1,0 +1,69 @@
+    .left{
+        float: left;
+    }
+
+    .ip_header{
+        position: fixed;
+        top: 55px;
+        left: 220px;
+        right: 20px;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        background-color: aquamarine;
+    }
+
+    .ip_content{
+        position: fixed;
+        top: 105px;
+        left: 220px;
+        right: 20px;
+        height: 400px;
+        background-color: aliceblue;
+    }
+
+    .query{
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+
+    .ip_content .query_1{
+        width: 100%;
+        height: 60px;
+    }
+
+    .ip_content .query_1 .query_2{
+        padding-left: 25px;
+        width: 30%;
+        height: 50px;
+        line-height: 50px ;
+    }
+
+   .query_n{
+        width: 20%;
+        padding-right: 10px;
+        text-align: right;
+    }
+    .query_i{
+        width: 70%;
+    }
+
+    input{
+        height: 20px;
+        width: 190px;
+    }
+
+    .res{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    table{
+        width: 100%;
+    }
+
+    td{
+        width: 15%;
+        text-align: center;
+    }

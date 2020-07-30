@@ -1,0 +1,143 @@
+{% extends "master.html" %}
+{% block link %}
+    <link rel="stylesheet" href="/static/css/sjb.css">
+{% endblock %}
+
+{% block content %}
+{#    <div class="shadow hide"></div>#}
+{#    <div class="tips hide"></div>#}
+
+    <div class="content_h">数据泵操作</div>
+    <div class="content_m">
+            <div class="order_div">
+                <form id="sjb_form">
+                    <table  border="1" cellspacing="0" style="border-collapse:collapse;">
+                        <thead>
+                        <tr>
+                            <th colspan="2">基础信息</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>名称</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                        <tr>
+                            <td class="td_title"><label style="color: red">*</label>操作</td>
+                            <td class="td_value">
+                                <input type="radio" name="opertion" value="impdp" checked />导入
+                                <input type="radio" name="opertion" value="expdp">导出
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title"><label style="color: red">*</label>数据库实例</td>
+                            <td class="td_value">
+                                <input type="radio" name="sid" value="orcldj">宜兴登记库
+                                <input type="radio" name="sid" value="orclkjk">宜兴权籍库
+                                <input type="radio" name="sid" value="tzdj">泰州登记库
+                                <input type="radio" name="sid" value="tzkjk">泰州权籍库
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title"><label style="color: red">*</label>库名</td>
+                            <td class="td_value">
+                                <select name="db_name" id="">
+                                    <option value="KJK/KJK">KJK</option>
+                                    <option value="DJJGK/DJJGK">DJJGK</option>
+                                    <option value="XTPZK/XTPZK">XTPZK</option>
+                                    <option value="YWBDK/YWBDK">YWBDK</option>
+                                    <option value="DJ_LCK/DJ_LCK">DJ_LCK</option>
+                                    <option value="FJWDK/FJWDK">FJWDK</option>
+                                    <option value="CXJGK/CXJGK">CXJGK</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">导入（出）内容格式</td>
+                            <td class="td_value">
+                                <input type="radio" name="content" value="all" checked>表定义和数据
+                                <input type="radio" name="content" value="data_only"> 数据
+                                <input type="radio" name="content" value="metadata_only"> 表定义
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title"><label style="color: red">*</label>目录</td>
+                            <td id="dir" class="td_value" >
+                                <input type="text" name="directory" readonly="readonly"> 注：选择数据库实例自动匹配
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title"><label style="color: red">*</label>文件名称</td>
+                            <td class="td_value">
+                                <input type="input" name="dumpfile"> 注：请不要使用汉字。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">日志名称</td>
+                            <td class="td_value">
+                                <input type="text" name="logfile">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">表名</td>
+                            <td class="td_value">
+                                <input type="text" name="table_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" colspan="2"><input id="sjbBtn" type="button" value="提交"></td>
+                        </tr>
+
+                    </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="log_div"> This is log area</div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(this).click(function () {
+            // 获取当前选中的数据库实例
+            var sid_value = $('input[name="sid"]:checked').val()
+            console.log(sid_value)
+
+            // 目录和数据库实例关联，目录根据选择数据库实例动态改变
+            directory={"orcldj":"djdata","orclkjk":"kjkdata","tzdj":"tzdjdata","tzkjk":"tzkjkdata"}
+            for(var i in directory){
+                if(i==sid_value){
+                    console.log("ok",directory[i])
+                    // 自动根据数据库实例填充目录
+                    $('#dir').children().val(directory[i])
+                }
+            }
+        })
+
+        $('#sjbBtn').click(function(){
+            $.ajax({
+                url:'/home/sjbTool',
+                type:'POST',
+                data:$('#sjb_form').serialize(),
+                dataType:'JSON',
+                async:true,
+                success:function(obj){
+                    if(obj.code==0){
+                        {#$('.tips,.shadow').removeClass('hide')#}
+                        {#$('tips').text(obj.msg)#}
+                        console.log(obj.msg)
+                        {#$('.log_div').text(obj.msg)#}
+                        output_log = obj.msg.replace(/\n/g,"<br/>")
+                        {#console.log(output_log)#}
+                        $('.log_div').text(output_log)
+                    }else{
+                        {#$('.tips,.shadow').removeClass('hide')#}
+                        {#$('tips').text(obj.err_msg)#}
+                        alert(obj.err_msg)
+                    }
+                }
+            })
+        })
+
+    </script>
+{% endblock %}

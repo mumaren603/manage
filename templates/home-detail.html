@@ -1,0 +1,149 @@
+{% extends "master.html" %}
+{% block link %}
+    <link rel="stylesheet" href="/static/css/host_detail.css">
+{% endblock %}
+
+{% block content %}
+    <div class="content_h">详细信息</div>
+    <div class="content_m">
+        <div class="menu">
+            <div class="menu-item active" a="1">基本信息</div>
+            <div class="menu-item" a="2">硬件信息</div>
+        </div>
+        <div class="detail_content">
+            <div b="1">
+                <table  border="1" cellspacing="0" style="border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th colspan="2">基础信息</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>名称</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>主机名称</td>
+                            <td>{{ host_detail.hostname }}</td>
+                        </tr>
+                        <tr>
+                            <td>系统版本</td>
+                            <td>{{ host_detail.systemVersion }}</td>
+                        </tr>
+                        <tr>
+                            <td>用户名</td>
+                            <td>{{ host_detail.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>密码</td>
+                            <td>{{ host_detail.password }}</td>
+                        </tr>
+                        <tr>
+                            <td>主板序列号</td>
+                            <td>{{ hostname.mainboardNo }}</td>
+                        </tr>
+                        <tr>
+                            <td>主板型号</td>
+                            <td>{{ hostname.mainboardmodel }}</td>
+                        </tr>
+                        <tr>
+                            <td>CPU逻辑核数</td>
+                            <td>{{ host_detail.CPUlogiccores }}</td>
+                        </tr>
+                        <tr>
+                            <td>CPU物理核数</td>
+                            <td>{{ host_detail.CPUphysicalcores }}</td>
+                        </tr>
+                        <tr>
+                            <td>厂商</td>
+                            <td>{{ host_detail.manufacturer }}</td>
+                        </tr>
+                        <tr>
+                            <td>部门</td>
+                            <td>{{ host_detail.dept.deptname }}</td>
+                        </tr>
+                    </tbody>
+            <thead>
+                <tr>
+                    <th colspan="2">网卡信息</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>网卡名称</th>
+                    <th>MAC地址</th>
+                    <th>IP地址</th>
+                    <th>子网掩码</th>
+                    <th>网关</th>
+                    <th>DNS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ host_detail.Intranetname }}</td>
+                    <td>{{ host_detail.Intranetmac }}</td>
+                    <td>{{ host_detail.IntranetIp }}</td>
+                    <td>{{ host_detail.IntranetNetMask }}</td>
+                    <td>{{ host_detail.IntranetGateWay }}</td>
+                    <td>{{ host_detail.IntranetDNS }}</td>
+                </tr>
+                <tr>
+                    <td>{{ host_detail.Extranetname }}</td>
+                    <td>{{ host_detail.Extranetmac }}</td>
+                    <td>{{ host_detail.ExtranetIp }}</td>
+                    <td>{{ host_detail.ExtranetNetMask }}</td>
+                    <td>{{ host_detail.ExtranetGateWay }}</td>
+                    <td>{{ host_detail.ExtranetDNS }}</td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+            <div class="hide" b="2">
+                <table  border="1" cellspacing="0" style="border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>价格</td>
+                            <td>{{ host_detail.price }}</td>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td>{{ host_detail.cpu }}</td>
+                        </tr>
+                        <tr>
+                            <td>内存</td>
+                            <td>{{ host_detail.memory }}</td>
+                        </tr>
+                        <tr>
+                            <td>磁盘</td>
+                            <td>{{ host_detail.disk }}</td>
+                        </tr>
+                        <tr>
+                            <td>电源</td>
+                            <td>{{ host_detail.power }}</td>
+                        </tr>
+                        <tr>
+                            <td>操作系统</td>
+                            <td>{{ host_detail.os }}</td>
+                        </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $('.menu-item').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            var target = $(this).attr('a')
+            $('.detail_content').children("[b='"+target+"']").removeClass('hide').siblings().addClass('hide')
+        })
+    </script>
+{% endblock %}

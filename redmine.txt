@@ -1,0 +1,14 @@
+项目移植必读：
+1、需要安装mysql数据库,设置root密码为root
+   数据库连接名:mysql  用户名/密码: root/root
+
+2、创建数据库表，pycharm中terminal执行:
+   python manage.py makemigrations
+   python manage.py migrate
+
+3、执行数据库初始化操作
+   启动django程序，一次执行以下请求：
+   http://127.0.0.1:8000/orm_userinfo
+   http://127.0.0.1:8000/orm_business
+   http://127.0.0.1:8000/orm_host
+
